@@ -179,46 +179,43 @@ listOfDoorPosition=[[320,130],[320,220],[320,310]]
 listOfkeyPosition=[[0,130],[600,130],[0,220],[600,220]]
 def restart_game():
     global levels,NumberOfLive,IsWin,FoundKey,monster_speed,bullet_speed,listOfkeyPosition,listOfDoorPosition
-    if levels<3:
-        if IsWin:
-                doorPosition=random.choice(listOfDoorPosition)
-                keyPosition=random.choice(listOfkeyPosition)
-                winsound.PlaySound("sound/start.wav",winsound.SND_FILENAME | winsound.SND_ASYNC )
-                canvas.moveto(Win_banner,-50,-50)
-                canvas.moveto(door,doorPosition[0],doorPosition[1])
-                canvas.moveto(key,keyPosition[0],keyPosition[1])
-                canvas.moveto(player,0,580)
-                levels+=1
-                NumberOfLive=0
-                IsWin=False
-                FoundKey=False
-                canvas.moveto(bullet,0,660)
-                monster_speed-=20
-                bullet_speed-=2
-                canvas.moveto(heart1,565,5)
-                canvas.moveto(heart2,610,5)
-                canvas.moveto(heart3,655,5)
-                move_monsters()
-        elif NumberOfLive==3:
-                winsound.PlaySound("sound/start.wav",winsound.SND_FILENAME | winsound.SND_ASYNC )
-                canvas.moveto(Lose_banner,-50,-50)
-                levels=1
-                NumberOfLive=0
-                bullet_speed=11
-                monster_speed=80
-                canvas.moveto(heart1,565,5)
-                canvas.moveto(heart2,610,5)
-                canvas.moveto(heart3,655,5)
-                canvas.moveto(bullet,0,660)
-                canvas.moveto(door,640,580)
-                canvas.moveto(key,300,130)
-                move_monsters()
-                IsWin=False
-                FoundKey=False
     if levels==3 and IsWin:
             end_game()
-    if NumberOfLive==3:
-        levels=1
+    elif IsWin:
+            doorPosition=random.choice(listOfDoorPosition)
+            keyPosition=random.choice(listOfkeyPosition)
+            winsound.PlaySound("sound/start.wav",winsound.SND_FILENAME | winsound.SND_ASYNC )
+            canvas.moveto(Win_banner,-50,-50)
+            canvas.moveto(door,doorPosition[0],doorPosition[1])
+            canvas.moveto(key,keyPosition[0],keyPosition[1])
+            canvas.moveto(player,0,580)
+            levels+=1
+            NumberOfLive=0
+            IsWin=False
+            FoundKey=False
+            canvas.moveto(bullet,0,660)
+            monster_speed-=20
+            bullet_speed-=2
+            canvas.moveto(heart1,565,5)
+            canvas.moveto(heart2,610,5)
+            canvas.moveto(heart3,655,5)
+            move_monsters()
+    elif NumberOfLive==3:
+            winsound.PlaySound("sound/start.wav",winsound.SND_FILENAME | winsound.SND_ASYNC )
+            canvas.moveto(Lose_banner,-50,-50)
+            levels=1
+            NumberOfLive=0
+            bullet_speed=11
+            monster_speed=80
+            canvas.moveto(heart1,565,5)
+            canvas.moveto(heart2,610,5)
+            canvas.moveto(heart3,655,5)
+            canvas.moveto(bullet,0,660)
+            canvas.moveto(door,640,580)
+            canvas.moveto(key,300,130)
+            move_monsters()
+            IsWin=False
+            FoundKey=False
 def end_game():
     winsound.PlaySound("sound/endgame.wav",winsound.SND_FILENAME | winsound.SND_ASYNC )
     canvas.delete("all")
